@@ -1,27 +1,22 @@
 import './App.css';
-import { Component } from 'react';
+import React from 'react';
+import {
+	BrowserRouter,
+	Routes,
+	Route,
+	Navigate
+} from 'react-router-dom'
+import FormView from './views/FormView'
 
-class App extends Component {
-	state = {
-		message: "If spring backend is running and database is running, then this message should be replaced!"
-	};
-	async componentDidMount() {
-		await this.getHelloWorld();
-	}
-	async getHelloWorld() {
-		const response           = await fetch('/helloworld');
-		const helloWorldResponse = await response.json();
-		this.setState({ message: helloWorldResponse.message });
-	}
-	render() {
+function App() {
 		return (
-			<div className="App">
-				<p>
-					{this.state.message}
-				</p>
-			</div>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/addcar" element = { <FormView/> }></Route>
+				</Routes>
+			</BrowserRouter>
 		);
-	}
+	
 }
 
 export default App;

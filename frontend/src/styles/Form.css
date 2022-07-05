@@ -1,0 +1,27 @@
+label {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+select {
+    background-color: rgb(240, 240, 240);
+    height: 30px;
+    width: -webkit-fill-available;
+    border-color: rgb(118, 118, 118);
+    border-width: 2px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 200px;
+    justify-self: center;
+}
