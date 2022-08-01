@@ -1,5 +1,7 @@
 package com.joakim.rental.api.repository.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,14 +13,18 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;    //Maybe @Id annotation, watch again
+    private Long id;
 
     private String name;
 
+    private String carName;
+
     private int age;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     private int revenue;
@@ -26,8 +32,9 @@ public class Car {
     public Car() {
     }
 
-    public Car(String name, int age, Date startDate, Date endDate, int revenue) {
+    public Car(String name, String carName, int age, Date startDate, Date endDate, int revenue) {
         this.name = name;
+        this.carName = carName;
         this.age = age;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -48,6 +55,14 @@ public class Car {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCarName() {
+        return carName;
+    }
+
+    public void setCarName(String carName) {
+        this.carName = carName;
     }
 
     public int getAge() {

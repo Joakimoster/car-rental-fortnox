@@ -25,6 +25,7 @@ public class CarService implements ICarService {
     //Todo Add business logic for calculation on revenue for rental of a car
     @Override
     public Car addNewCar(Car car) {
+
         return repository.save(car);
         //return repository.addNewCar(car.getName(), car.getAge(), car.getStartDate(), car.getEndDate(), car.getRevenue());
     }

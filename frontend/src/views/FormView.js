@@ -1,14 +1,28 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { CarDropDown } from "../components/form/CarDropDown";
+import { createNewCar } from "../redux/slices/FormCarSlice";
 import "../styles/Form.css"
 
 function FormView() {
 
-    const [ values, setValues ] = useState({ car: "", startDate: "", endDate: "", name: "", age: 0 })
+    const [ values, setValues ] = useState({ car: "", startDate: "", endDate: "", name: "", age: 0 });
+
+    const dispatch = useDispatch();
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createNewCar({ values }))
+        handleReset();
+    }
+
+    const handleReset = () => {
+        setValues({car: '', startDate: '', endDate: '', name: '', age: 0});
+    }
 
     return (
         <div className="main-container">
-            <form>
+            <form onSubmit={onSubmit}>
                 <div className="input-container">
                     <label>Available cars</label>
                     <CarDropDown
@@ -20,9 +34,11 @@ function FormView() {
                 <div className="input-container">
                     <label>Start date</label>
                     <input
-                        type="date"
+                        type="datetime-local"
                         id="start-date"
                         value={values.startDate}
+                        min={new Date().toISOString().slice(0, -8)}
+                        
                         onChange={(e) => setValues({ ...values, startDate: e.target.value })}
                         name="startDate"
                         required
@@ -69,8 +85,13 @@ function FormView() {
                     >
                     </input>
                 </div>
+                <div className="submit-button-container">
+                   <button className="car-rental-button" type="submit">Save</button>
+                   <label>Expected cost: </label> 
+                </div>   
             </form>
         </div>
+        
     )
 }
 

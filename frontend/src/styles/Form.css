@@ -25,3 +25,23 @@ select {
     width: 200px;
     justify-self: center;
 }
+
+.car-rental-button {
+    margin-top: 8px;
+    width: 50%;
+    background-color: green;
+    border-radius: 12%;
+    font-weight: bold;
+}
+
+.redirect-button {
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+}
