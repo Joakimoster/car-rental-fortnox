@@ -6,6 +6,8 @@ public class CarResponseDto {
 
     private String name;
 
+    private String car;
+
     private Date startDate;
 
     private Date endDate;
@@ -15,8 +17,9 @@ public class CarResponseDto {
     public CarResponseDto() {
     }
 
-    public CarResponseDto(String name, Date startDate, Date endDate, int revenue) {
+    public CarResponseDto(String name, String car, Date startDate, Date endDate, int revenue) {
         this.name = name;
+        this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
         this.revenue = revenue;
@@ -28,6 +31,14 @@ public class CarResponseDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCar() {
+        return car;
+    }
+
+    public void setCar(String car) {
+        this.car = car;
     }
 
     public Date getStartDate() {

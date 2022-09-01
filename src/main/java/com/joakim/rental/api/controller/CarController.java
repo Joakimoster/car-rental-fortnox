@@ -1,5 +1,6 @@
 package com.joakim.rental.api.controller;
 
+import com.joakim.rental.api.controller.dto.CarResponseDto;
 import com.joakim.rental.api.repository.entity.Car;
 import com.joakim.rental.api.service.CarService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class CarController implements ICarController{
         this.service = service;
     }
 
-    //Todo change to CarResponseDto
+
     @Override
     @GetMapping("/cars")
     public ResponseEntity<List<Car>> getAllCars() {

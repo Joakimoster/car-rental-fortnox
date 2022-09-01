@@ -1,6 +1,5 @@
 package com.joakim.rental.api.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
@@ -18,7 +17,7 @@ public class Car {
 
     private String name;
 
-    private String carName;
+    private String car;
 
     private int age;
 
@@ -33,9 +32,9 @@ public class Car {
     public Car() {
     }
 
-    public Car(String name, String carName, int age, Date startDate, Date endDate, int revenue) {
+    public Car(String name, String car, int age, Date startDate, Date endDate, int revenue) {
         this.name = name;
-        this.carName = carName;
+        this.car = car;
         this.age = age;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -58,12 +57,12 @@ public class Car {
         this.name = name;
     }
 
-    public String getCarName() {
-        return carName;
+    public String getCar() {
+        return car;
     }
 
-    public void setCarName(String carName) {
-        this.carName = carName;
+    public void setCar(String carName) {
+        this.car = carName;
     }
 
     public int getAge() {

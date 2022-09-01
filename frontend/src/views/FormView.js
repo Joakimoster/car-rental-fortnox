@@ -9,9 +9,9 @@ import "../styles/Form.css"
 function FormView() {
 
     const [values, setValues] = useState({ car: "", startDate: "", endDate: "", name: "", age: 0 });
+    const [expectedCarCost, setExpectedCarCost] = useState(0);
 
     const [startDate, setStartDate] = useState(new Date());
-
     const [endDate, setEndDate] = useState(new Date().setDate(new Date(startDate).getDate() + 1));
 
     const dispatch = useDispatch();
@@ -92,6 +92,7 @@ function FormView() {
                         }}
                         dateFormat="yyyy-MM-dd"
                         minDate={new Date()}
+                        required
                     />
                 </div>
 
@@ -108,12 +109,13 @@ function FormView() {
                         }}
                         dateFormat="yyyy-MM-dd"
                         minDate={new Date().setDate(new Date(startDate).getDate() + 1)}
+                        required
                     />
                 </div>
 
                 <div className="submit-button-container">
                     <button className="car-rental-button" type="submit">Save</button>
-                    <label>Expected cost: </label>
+                    <label>Expected cost: {values.car}</label>
                 </div>
             </form>
         </div>
