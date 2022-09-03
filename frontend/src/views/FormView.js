@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { CarDropDown } from "../components/form/CarDropDown";
 import { createNewCar } from "../redux/slices/FormCarSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Form.css"
+import { getDate, setDate } from "date-fns";
 
 function FormView() {
 
     const [values, setValues] = useState({ car: "", startDate: "", endDate: "", name: "", age: 0 });
+
     const [expectedCarCost, setExpectedCarCost] = useState(0);
 
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date().setDate(new Date(startDate).getDate() + 1));
+    const [dateInterval, setDateInterval] = useState(0); 
 
     const dispatch = useDispatch();
 
@@ -39,6 +42,41 @@ function FormView() {
         if (e.code === 'Minus') {
             e.preventDefault();
         }
+    }
+
+    /*useEffect(() => {
+        const interval = getDateInterval(startDate, endDate);
+        setDateInterval(interval);
+        console.log(interval)
+    }, [startDate, endDate]);*/
+
+    useEffect(() => {
+        const cost = calculateExpectedCarCost(values.car, startDate, endDate);
+        console.log(startDate, endDate)
+        setExpectedCarCost(cost);
+    }, [values.car, startDate, endDate])
+
+    const getDateInterval = (date1, date2) => {
+        const interval = Math.floor((Math.abs(date2 - date1)) / (24 * 60 * 60 * 1000));
+        return interval;
+    }
+
+    const calculateExpectedCarCost = (car, date1, date2) => {
+        let expectedCost = 0;
+        let interval = getDateInterval(date1, date2);
+
+        if (car === "Volvo") {
+            expectedCost = interval * 1500;
+        } else if (car === "Volkswagen Golf") {
+            expectedCost = interval * 1333; 
+        } else if (car === "Ford Mustang") {
+            expectedCost = interval * 3000;
+        } else if (car === "Ford Transit") {
+            expectedCost = interval * 2400;
+        }
+        console.log(interval)
+        console.log(expectedCost)
+        return expectedCost;
     }
 
     return (
@@ -115,7 +153,8 @@ function FormView() {
 
                 <div className="submit-button-container">
                     <button className="car-rental-button" type="submit">Save</button>
-                    <label>Expected cost: {values.car}</label>
+                    <label>Expected cost: {expectedCarCost}</label>
+                    <label>Car choosed: {values.car}</label>
                 </div>
             </form>
         </div>
