@@ -5,7 +5,7 @@ import CarViewReducer from "../slices/CarViewSlice";
 const store = configureStore({
     reducer: {
         form: CarFormReducer,
-        table: CarViewReducer
+        cars: CarViewReducer
     },
 });
 

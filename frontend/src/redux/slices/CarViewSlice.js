@@ -12,8 +12,31 @@ const carTableSlice = createSlice({
     initialState: {
         cars: [],
         loading: false,
-        status: ''
+        status: '',
+        totalRevenue: 0,
+        formatedStartDate: ''
     },
+
+    reducers: {
+        calculateTotalRevenues: (state) => {
+            let calculatedRevenue = 0;
+
+            state.cars.forEach((item) => {
+                calculatedRevenue += item.revenue;
+            });
+            state.totalRevenue = calculatedRevenue;
+        },
+        formatDatePattern: (state) => {
+            let tempDate = '';
+
+            state.cars.forEach((item) => {
+                tempDate = item.startDate;
+                tempDate.toLocaleDateString()
+            });
+            state.formatedStartDate = tempDate;
+        },
+    },
+
     extraReducers: (builder) => {
         builder.addCase(fetchCars.pending, (state) => {
             state.loading = true;
@@ -21,7 +44,7 @@ const carTableSlice = createSlice({
         })
         builder.addCase(fetchCars.fulfilled, (state, action) => {
             state.loading = false;
-            state.boxes = action.payload;
+            state.cars = action.payload;
             state.status = "success";
         })
         builder.addCase(fetchCars.rejected, (state, action) => {
@@ -30,5 +53,7 @@ const carTableSlice = createSlice({
         })
     }
 });
+
+export const { calculateTotalRevenues, formatDatePattern } = carTableSlice.actions;
 
 export default carTableSlice.reducer;

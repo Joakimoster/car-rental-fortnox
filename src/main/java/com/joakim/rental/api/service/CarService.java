@@ -33,8 +33,6 @@ public class CarService implements ICarService {
 
     public int getDateInterval(Date toDate, Date startDate) {
         int interval = 0;
-        System.out.println(toDate);
-        System.out.println(startDate);
         long diff = toDate.getTime() - startDate.getTime();
         long diffDays = diff / (24 * 60 * 59 * 1000);
         interval = (int) diffDays;

@@ -19,9 +19,14 @@ function FormView() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(values)
-        dispatch(createNewCar({ values }))
-        handleReset();
+        if (startDate > endDate) {
+            alert("The start date for the pick up cant be in advance of the end date for the pick up..")
+        } else {
+            console.log(values)
+            dispatch(createNewCar({ values }))
+            handleReset();
+            alert('Success! You may now see the car you rented in the carlist')
+        }
     }
 
     const handleReset = () => {
