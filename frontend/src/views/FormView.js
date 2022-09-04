@@ -5,16 +5,14 @@ import { createNewCar } from "../redux/slices/FormCarSlice";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/Form.css"
-import { getDate, setDate } from "date-fns";
 
 function FormView() {
 
     const [values, setValues] = useState({ car: "", startDate: "", endDate: "", name: "", age: 0 });
-
     const [expectedCarCost, setExpectedCarCost] = useState(0);
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date().setDate(new Date(startDate).getDate() + 1));
+    const [startDate, setStartDate] = useState(0);
+    const [endDate, setEndDate] = useState(0);
     const [dateInterval, setDateInterval] = useState(0); 
 
     const dispatch = useDispatch();
@@ -29,6 +27,7 @@ function FormView() {
     const handleReset = () => {
         setStartDate('');
         setEndDate('');
+        setExpectedCarCost(0);
         setValues({
             car: '',
             startDate: '',
@@ -54,10 +53,11 @@ function FormView() {
         const cost = calculateExpectedCarCost(values.car, startDate, endDate);
         console.log(startDate, endDate)
         setExpectedCarCost(cost);
-    }, [values.car, startDate, endDate])
+    }, [values.car, endDate])
 
     const getDateInterval = (date1, date2) => {
-        const interval = Math.floor((Math.abs(date2 - date1)) / (24 * 60 * 60 * 1000));
+        const interval = Math.floor((Math.abs(date2 - date1)) / (24 * 60 * 59 * 1000));
+        console.log(interval)
         return interval;
     }
 
