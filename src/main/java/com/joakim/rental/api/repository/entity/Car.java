@@ -22,11 +22,9 @@ public class Car {
 
     private int age;
 
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date startDate;
 
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date endDate;
 
