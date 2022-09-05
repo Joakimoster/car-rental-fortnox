@@ -3,6 +3,7 @@ import { useState } from "react";
 import 'react-calendar/dist/Calendar.css';
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars, calculateTotalRevenues } from "../redux/slices/CarViewSlice";
+import "../styles/TableView.css"
 
 function TableView() {
 
@@ -47,7 +48,6 @@ function TableView() {
                 </table>
                 <div className="total-revenue-view">
                         <h2>Total revenue: <span>{totalRevenue}</span></h2>
-                        <h2>Formated date: <span>{formatedStartDate}</span></h2>
                 </div>
             </div>
         </div>
